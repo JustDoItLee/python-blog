@@ -4,6 +4,7 @@
 '''
 Models for user, blog, comment.
 '''
+import asyncio
 
 __author__ = 'lz'
 
@@ -53,13 +54,13 @@ class Comment(Model):
     created_at = FloatField(default=time.time)
 
 
-def test():
-    yield from orm.create_pool(user='www-data', password='www-data', database='awesome')
+async def test(loop,**kw):
+    await orm.create_pool(loop=loop,user='root', password='lizhi', db='python_blog')
+    u = User(name=kw.get('name'), email=kw.get('email'), passwd=kw.get('passwd'), image=kw.get('image'))
+    await u.save()
+    await orm.destory_pool()
 
-    u = User(name='Test', email='test@example.com', passwd='1234567890', image='about:blank')
-
-    yield from u.save()
-
-
-for x in test():
-    pass
+data=dict(name='gaf', email='xxxx@163.com', passwd='123456', image='about:blank')
+loop=asyncio.get_event_loop()
+loop.run_until_complete(test(loop,**data))
+loop.close()
