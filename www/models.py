@@ -53,14 +53,14 @@ class Comment(Model):
     content = TextField()
     created_at = FloatField(default=time.time)
 
-
-async def test(loop,**kw):
-    await orm.create_pool(loop=loop,user='root', password='lizhi', db='python_blog')
-    u = User(name=kw.get('name'), email=kw.get('email'), passwd=kw.get('passwd'), image=kw.get('image'))
-    await u.save()
-    await orm.destory_pool()
-
-data=dict(name='gaf', email='xxxx@163.com', passwd='123456', image='about:blank')
-loop=asyncio.get_event_loop()
-loop.run_until_complete(test(loop,**data))
-loop.close()
+#
+# async def test(loop,**kw):
+#     await orm.create_pool(loop=loop,user='root', password='lizhi', db='python_blog')
+#     u = User(name=kw.get('name'), email=kw.get('email'), passwd=kw.get('passwd'), image=kw.get('image'))
+#     await u.save()
+#     await orm.destory_pool()
+#
+# data=dict(name='gaf', email='xxxx@163.com', passwd='123456', image='about:blank')
+# loop=asyncio.get_event_loop()
+# loop.run_until_complete(test(loop,**data))
+# loop.close()
