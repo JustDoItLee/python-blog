@@ -17,6 +17,6 @@ configs = {
         'db': 'python_blog'
     },
     'session': {
-        'secret': 'Awesome'
+        'secret': 'python_blog_secret'
     }
 }
