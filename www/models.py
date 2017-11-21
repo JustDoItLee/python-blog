@@ -8,8 +8,8 @@ Models for user, blog, comment.
 __author__ = 'lz'
 
 import time, uuid
-
-from orm import Model, StringField, BooleanField, FloatField, TextField
+from www import orm
+from www.orm import Model, StringField, BooleanField, FloatField, TextField
 
 
 def next_id():
@@ -51,3 +51,15 @@ class Comment(Model):
     user_image = StringField(ddl='varchar(500)')
     content = TextField()
     created_at = FloatField(default=time.time)
+
+
+def test():
+    yield from orm.create_pool(user='www-data', password='www-data', database='awesome')
+
+    u = User(name='Test', email='test@example.com', passwd='1234567890', image='about:blank')
+
+    yield from u.save()
+
+
+for x in test():
+    pass
