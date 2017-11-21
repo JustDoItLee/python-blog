@@ -17,7 +17,7 @@ COOKIE_NAME = 'pysession'
 _COOKIE_KEY = configs.session.secret
 
 
-async def user2cookie(user, max_age):
+def user2cookie(user, max_age):
     '''
     Generate cookie str by user.
     '''
